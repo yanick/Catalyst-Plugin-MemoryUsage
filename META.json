@@ -1,0 +1,65 @@
+{
+   "abstract" : "Profile memory usage of requests",
+   "author" : [
+      "Yanick Champoux <yanick@babyl.dyndns.org>"
+   ],
+   "dynamic_config" : 0,
+   "generated_by" : "Dist::Zilla version 4.102345, CPAN::Meta::Converter version 2.101590",
+   "license" : [
+      "perl_5"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "Catalyst-Plugin-MemoryUsage",
+   "prereqs" : {
+      "build" : {
+         "requires" : {
+            "Module::Build" : "0.3601"
+         }
+      },
+      "configure" : {
+         "requires" : {
+            "Module::Build" : "0.3601"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "MRO::Compat" : 0,
+            "Memory::Usage" : 0,
+            "Moose::Role" : 0,
+            "namespace::autoclean" : 0
+         }
+      },
+      "test" : {
+         "requires" : {
+            "Carp" : 0,
+            "Scalar::Util" : 0,
+            "Test::More" : "0.94",
+            "perl" : "5.004"
+         }
+      }
+   },
+   "provides" : {
+      "Catalyst::Plugin::MemoryUsage" : {
+         "file" : "lib/Catalyst/Plugin/MemoryUsage.pm",
+         "version" : "v0.0.1"
+      }
+   },
+   "release_status" : "stable",
+   "resources" : {
+      "bugtracker" : {
+         "mailto" : "bug-catalyst-plugin-memoryusage at rt.cpan.org",
+         "web" : "http://rt.cpan.org/Public/Dist/Display.html?Name=Catalyst-Plugin-MemoryUsage"
+      },
+      "homepage" : "http://search.cpan.org/dist/Catalyst-Plugin-MemoryUsage/",
+      "repository" : {
+         "type" : "git",
+         "url" : "git://github.com/yanick/Catalyst-Plugin-MemoryUsage.git",
+         "web" : "http://github.com/yanick/Catalyst-Plugin-MemoryUsage/tree"
+      }
+   },
+   "version" : "0.0.1"
+}
+

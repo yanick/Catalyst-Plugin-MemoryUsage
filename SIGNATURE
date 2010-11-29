@@ -1,0 +1,31 @@
+This file contains message digests of all files listed in MANIFEST,
+signed via the Module::Signature module, version 0.64.
+
+To verify the content in this distribution, first make sure you have
+Module::Signature installed, then type:
+
+    % cpansign -v
+
+It will check each file's integrity, as well as the signature's
+validity.  If "==> Signature verified OK! <==" is not displayed,
+the distribution may already have been compromised, and you should
+not run its Makefile.PL or Build.PL.
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+SHA1 f182551f3493c24f04d526d38c56e4450559364a Build.PL
+SHA1 d28653e1d1e57554b16266ade94ed5074bc28e36 Changes
+SHA1 3ee0d276167c367325eebe1d5ec9877ade504d93 LICENSE
+SHA1 4a250bd13131b21e725f635b4fc19a18819978ca MANIFEST
+SHA1 35dd3abaf8fe487772793ed619fbe849225cd3cc META.json
+SHA1 889b8fe943a9c9ae2b61d0964a765c05c0013e47 META.yml
+SHA1 9d6828f331d7ca6e6c3595cdffd5fc6a05b20ea1 lib/Catalyst/Plugin/MemoryUsage.pm
+SHA1 050aa113e828a52db3c86065c0c0ed50198b7ce8 t/000-report-versions.t
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.10 (GNU/Linux)
+
+iEYEARECAAYFAkzzJnsACgkQ34Hwf+GwC4zvSgCeOjINpKAApdiw8EkRfBuYv2ko
+O7UAn0HIZGx6oOmYb7w6QVsGewTXJyIS
+=vefF
+-----END PGP SIGNATURE-----
