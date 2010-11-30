@@ -52,12 +52,40 @@ log, which looks like this:
         1  47592 (     0)  40860 (     0)   3468 (     0)   1112 (     0)  37456 (     0) after Galuga::Controller::Root : _END
         1  47592 (     0)  40860 (     0)   3468 (     0)   1112 (     0)  37456 (     0) after Galuga::Controller::Root : _DISPATCH
 
+=head1 METHODS
+
+=head2 C<memory_usage()>
+
+Returns the L<Memory::Usage> object available to the context.
+
+To record more measure points for the memory profiling, use the C<record()>
+method of that object:
+
+    sub foo :Path {
+        my ( $self, $c) = @_;
+
+        ...
+
+        big_stuff();
+
+        $c->memory_usage->record( "done with big_stuff()" );
+
+        ...
+    }
+
 =cut
 
 has memory_usage => (
     is => 'rw',
     default => sub { Memory::Usage->new },
 );
+
+=head2 C<reset_memory_usage()>
+
+Discards the current C<Memory::Usage> object, along with its recorded data,
+and replaces it by a shiny new one.
+
+=cut
 
 sub reset_memory_usage {
     my $self = shift;
@@ -90,4 +118,11 @@ before finalize => sub {
 };
 
 1;
+
+=head1 SEE ALSO
+
+L<Memory::Usage>
+
+=cut
+
 
