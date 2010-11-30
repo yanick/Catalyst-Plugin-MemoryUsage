@@ -1,6 +1,8 @@
 Revision history for Catalyst::Plugin::MemoryUsage
 
 {{$NEXT}}
+    * Flesh out the documentation a little bit.
+    * Add a test.
 
 0.0.1     2010-11-28 23:05:10 America/Montreal
     * First release on an unsuspecting world.
