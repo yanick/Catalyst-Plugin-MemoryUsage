@@ -4,9 +4,13 @@ author:
   - 'Yanick Champoux <yanick@babyl.dyndns.org>'
 build_requires:
   Carp: 0
+  Catalyst: 0
+  Catalyst::Controller: 0
   Module::Build: 0.3601
   Scalar::Util: 0
   Test::More: 0.94
+  Test::WWW::Mechanize::Catalyst: 0
+  parent: 0
   perl: 5.004
 configure_requires:
   Module::Build: 0.3601
@@ -20,7 +24,7 @@ name: Catalyst-Plugin-MemoryUsage
 provides:
   Catalyst::Plugin::MemoryUsage:
     file: lib/Catalyst/Plugin/MemoryUsage.pm
-    version: v0.0.1
+    version: v0.0.2
 requires:
   MRO::Compat: 0
   Memory::Usage: 0
@@ -30,4 +34,4 @@ resources:
   bugtracker: http://rt.cpan.org/Public/Dist/Display.html?Name=Catalyst-Plugin-MemoryUsage
   homepage: http://search.cpan.org/dist/Catalyst-Plugin-MemoryUsage/
   repository: git://github.com/yanick/Catalyst-Plugin-MemoryUsage.git
-version: 0.0.1
+version: 0.0.2

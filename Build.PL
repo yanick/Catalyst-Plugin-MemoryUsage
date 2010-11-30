@@ -8,9 +8,13 @@ use Module::Build 0.3601;
 my %module_build_args = (
   'build_requires' => {
     'Carp' => '0',
+    'Catalyst' => '0',
+    'Catalyst::Controller' => '0',
     'Module::Build' => '0.3601',
     'Scalar::Util' => '0',
     'Test::More' => '0.94',
+    'Test::WWW::Mechanize::Catalyst' => '0',
+    'parent' => '0',
     'perl' => '5.004'
   },
   'configure_requires' => {
@@ -21,7 +25,7 @@ my %module_build_args = (
     'Yanick Champoux <yanick@babyl.dyndns.org>'
   ],
   'dist_name' => 'Catalyst-Plugin-MemoryUsage',
-  'dist_version' => '0.0.1',
+  'dist_version' => '0.0.2',
   'license' => 'perl',
   'module_name' => 'Catalyst::Plugin::MemoryUsage',
   'recommends' => {},

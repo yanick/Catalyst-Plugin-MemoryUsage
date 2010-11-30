@@ -4,6 +4,10 @@ LICENSE
 MANIFEST
 META.json
 META.yml
+README
 SIGNATURE
 lib/Catalyst/Plugin/MemoryUsage.pm
 t/000-report-versions.t
+t/basic_app.t
+t/lib/TestApp.pm
+t/lib/TestApp/Controller/Root.pm
