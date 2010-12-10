@@ -10,7 +10,14 @@ use MRO::Compat;
 
 use Memory::Usage;
 
-our $VERSION = '0.0.1';
+use Devel::CheckOS;
+
+our $os_not_supported = Devel::CheckOS::os_isnt( 'Linux' );
+
+if ( $os_not_supported ) {
+    warn "OS not supported by Catalyst::Plugin::MemoryUsage\n",
+         "\tStats will not be collected\n";
+}
 
 =head1 SYNOPSIS
 
@@ -93,20 +100,24 @@ sub reset_memory_usage {
     $self->memory_usage( Memory::Usage->new );
 }
 
+unless ( $os_not_supported ) {
+
 after execute => sub {
     my $c = shift;
 
-    $c->memory_usage->record( "after ". join " : ", @_ );
+    return if $os_not_supported;
+
+    $c->memory_usage->record( "after " . join " : ", @_ );
 };
 
 around prepare => sub {
     my $orig = shift;
     my $self = shift;
 
-    my $c = $self->$orig( @_ );
+    my $c = $self->$orig(@_);
 
     $c->reset_memory_usage;
-    $c->memory_usage->record( 'preparing for the request' );
+    $c->memory_usage->record('preparing for the request');
 
     return $c;
 };
@@ -117,7 +128,16 @@ before finalize => sub {
     $c->log->debug( 'memory usage of request', $c->memory_usage->report );
 };
 
+}
+
 1;
+
+=head1 BUGS AND LIMITATIONS
+
+C<Memory::Usage>, which is the module C<Catalyst::Plugin::MemoryUsage> relies
+on to get its statistics, only work for Linux-based platforms. Consequently,
+for the time being C<Catalyst::Plugin::MemoryUsage> will not do anything
+on any other platform. This being said, patches are most welcome. :-)
 
 =head1 SEE ALSO
 
