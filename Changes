@@ -1,5 +1,8 @@
 Revision history for Catalyst::Plugin::MemoryUsage
 
+0.1.0     2010-12-09 21:25:39 America/Montreal
+    * If the OS is not Linux, issue a warning and don't active the plugin.
+
 0.0.2     2010-11-29 20:41:21 America/Montreal
     * Flesh out the documentation a little bit.
     * Add a test.

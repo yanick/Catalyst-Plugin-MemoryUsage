@@ -11,3 +11,4 @@ t/000-report-versions.t
 t/basic_app.t
 t/lib/TestApp.pm
 t/lib/TestApp/Controller/Root.pm
+t/not-supported.t

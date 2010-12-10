@@ -24,8 +24,9 @@ name: Catalyst-Plugin-MemoryUsage
 provides:
   Catalyst::Plugin::MemoryUsage:
     file: lib/Catalyst/Plugin/MemoryUsage.pm
-    version: v0.0.2
+    version: v0.1.0
 requires:
+  Devel::CheckOS: 0
   MRO::Compat: 0
   Memory::Usage: 0
   Moose::Role: 0
@@ -34,4 +35,4 @@ resources:
   bugtracker: http://rt.cpan.org/Public/Dist/Display.html?Name=Catalyst-Plugin-MemoryUsage
   homepage: http://search.cpan.org/dist/Catalyst-Plugin-MemoryUsage/
   repository: git://github.com/yanick/Catalyst-Plugin-MemoryUsage.git
-version: 0.0.2
+version: 0.1.0

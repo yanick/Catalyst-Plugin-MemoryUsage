@@ -2,7 +2,7 @@ NAME
     Catalyst::Plugin::MemoryUsage - Profile memory usage of requests
 
 VERSION
-    version 0.0.2
+    version 0.1.0
 
 SYNOPSIS
     In YourApp.pm:
@@ -64,6 +64,13 @@ METHODS
   "reset_memory_usage()"
     Discards the current "Memory::Usage" object, along with its recorded
     data, and replaces it by a shiny new one.
+
+BUGS AND LIMITATIONS
+    "Memory::Usage", which is the module "Catalyst::Plugin::MemoryUsage"
+    relies on to get its statistics, only work for Linux-based platforms.
+    Consequently, for the time being "Catalyst::Plugin::MemoryUsage" will
+    not do anything on any other platform. This being said, patches are most
+    welcome. :-)
 
 SEE ALSO
     Memory::Usage
