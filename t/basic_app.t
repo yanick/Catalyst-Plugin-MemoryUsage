@@ -14,6 +14,8 @@ if ( os_isnt( 'Linux' ) ) {
 use Test::WWW::Mechanize::Catalyst;
 my $mech = Test::WWW::Mechanize::Catalyst->new(catalyst_app => 'TestApp');
 
+my $x = $MyLog::mylog;  # to keep the warnings happy
+
 $mech->get_ok('/index');
 
 my ( $profile ) = grep { /memory usage/ } @{ $MyLog::mylog->{debug} };
