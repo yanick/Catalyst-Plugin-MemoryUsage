@@ -25,7 +25,7 @@ my %module_build_args = (
     'Yanick Champoux <yanick@babyl.dyndns.org>'
   ],
   'dist_name' => 'Catalyst-Plugin-MemoryUsage',
-  'dist_version' => '0.1.0',
+  'dist_version' => '0.1.1',
   'license' => 'perl',
   'module_name' => 'Catalyst::Plugin::MemoryUsage',
   'recommends' => {},

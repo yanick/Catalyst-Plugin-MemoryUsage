@@ -4,9 +4,9 @@ use warnings;
 use lib 't/lib';
 use Test::More;                      # last test to print
 
-use Devel::CheckOS qw/ os_is /;
+use Catalyst::Plugin::MemoryUsage;
 
-if ( os_is( 'Linux' ) ) {
+if ( $Catalyst::Plugin::MemoryUsage::os_not_supported ) {
     plan skip_all => "os $^O is supported";
     exit;
 }

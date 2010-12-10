@@ -1,6 +1,6 @@
 package Catalyst::Plugin::MemoryUsage;
 BEGIN {
-  $Catalyst::Plugin::MemoryUsage::VERSION = '0.1.0';
+  $Catalyst::Plugin::MemoryUsage::VERSION = '0.1.1';
 }
 #ABSTRACT: Profile memory usage of requests
 
@@ -15,7 +15,9 @@ use Memory::Usage;
 
 use Devel::CheckOS;
 
-our $os_not_supported = Devel::CheckOS::os_isnt( 'Linux' );
+our @SUPPORTED_OSES = qw/ Linux NetBSD /;
+
+our $os_not_supported = Devel::CheckOS::os_isnt( @SUPPORTED_OSES );
 
 if ( $os_not_supported ) {
     warn "OS not supported by Catalyst::Plugin::MemoryUsage\n",
@@ -79,7 +81,7 @@ Catalyst::Plugin::MemoryUsage - Profile memory usage of requests
 
 =head1 VERSION
 
-version 0.1.0
+version 0.1.1
 
 =head1 SYNOPSIS
 
@@ -151,8 +153,8 @@ and replaces it by a shiny new one.
 
 C<Memory::Usage>, which is the module C<Catalyst::Plugin::MemoryUsage> relies
 on to get its statistics, only work for Linux-based platforms. Consequently,
-for the time being C<Catalyst::Plugin::MemoryUsage> will not do anything
-on any other platform. This being said, patches are most welcome. :-)
+for the time being C<Catalyst::Plugin::MemoryUsage> only work on Linux and
+NetBSD. This being said, patches are most welcome. :-)
 
 =head1 SEE ALSO
 

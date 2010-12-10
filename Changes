@@ -1,5 +1,8 @@
 Revision history for Catalyst::Plugin::MemoryUsage
 
+0.1.1     2010-12-09 23:34:59 America/Montreal
+    * Add support for NetBSD.
+
 0.1.0     2010-12-09 21:25:39 America/Montreal
     * If the OS is not Linux, issue a warning and don't active the plugin.
 

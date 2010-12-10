@@ -2,7 +2,7 @@ NAME
     Catalyst::Plugin::MemoryUsage - Profile memory usage of requests
 
 VERSION
-    version 0.1.0
+    version 0.1.1
 
 SYNOPSIS
     In YourApp.pm:
@@ -68,9 +68,8 @@ METHODS
 BUGS AND LIMITATIONS
     "Memory::Usage", which is the module "Catalyst::Plugin::MemoryUsage"
     relies on to get its statistics, only work for Linux-based platforms.
-    Consequently, for the time being "Catalyst::Plugin::MemoryUsage" will
-    not do anything on any other platform. This being said, patches are most
-    welcome. :-)
+    Consequently, for the time being "Catalyst::Plugin::MemoryUsage" only
+    work on Linux and NetBSD. This being said, patches are most welcome. :-)
 
 SEE ALSO
     Memory::Usage
