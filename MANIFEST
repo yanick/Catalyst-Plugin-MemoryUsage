@@ -5,6 +5,7 @@ MANIFEST
 META.json
 META.yml
 README
+README.mkdn
 SIGNATURE
 lib/Catalyst/Plugin/MemoryUsage.pm
 t/000-report-versions.t
