@@ -11,6 +11,8 @@ if ( $Catalyst::Plugin::MemoryUsage::os_not_supported ) {
     exit;
 }
 
+$ENV{CATALYST_DEBUG} = 1;
+
 use Test::WWW::Mechanize::Catalyst;
 my $mech = Test::WWW::Mechanize::Catalyst->new(catalyst_app => 'TestApp');
 
