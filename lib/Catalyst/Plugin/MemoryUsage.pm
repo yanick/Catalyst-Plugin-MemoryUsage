@@ -11,6 +11,9 @@ use MRO::Compat;
 use Memory::Usage;
 
 use Devel::CheckOS;
+use Text::SimpleTable;
+use Number::Bytes::Human qw/ format_bytes /;
+use List::Util qw/ max /;
 
 our @SUPPORTED_OSES = qw/ Linux NetBSD /;
 
@@ -52,7 +55,7 @@ log, which looks like this:
     time    vsz (  diff)    rss (  diff) shared (  diff)   code (  diff)   data (  diff)
         0  45304 ( 45304)  38640 ( 38640)   3448 (  3448)   1112 (  1112)  35168 ( 35168) preparing for the request
         0  45304 (     0)  38640 (     0)   3448 (     0)   1112 (     0)  35168 (     0) after Galuga::Controller::Root : _BEGIN
-        0  45304 (     0)  38640 (     0)   3448 (     0)   1112 (     0)  35168 (     0) after Galuga::Controller::Root : _AUTO
+        Format Size Byte Text0  45304 (     0)  38640 (     0)   3448 (     0)   1112 (     0)  35168 (     0) after Galuga::Controller::Root : _AUTO
         0  46004 (   700)  39268 (   628)   3456 (     8)   1112 (     0)  35868 (   700) finished running iffy code
         0  46004 (     0)  39268 (     0)   3456 (     0)   1112 (     0)  35868 (     0) after Galuga::Controller::Entry : entry/index
         0  46004 (     0)  39268 (     0)   3456 (     0)   1112 (     0)  35868 (     0) after Galuga::Controller::Root : _ACTION
@@ -60,7 +63,7 @@ log, which looks like this:
         1  47592 (     0)  40860 (     0)   3468 (     0)   1112 (     0)  37456 (     0) after Galuga::Controller::Root : end
         1  47592 (     0)  40860 (     0)   3468 (     0)   1112 (     0)  37456 (     0) after Galuga::Controller::Root : _END
         1  47592 (     0)  40860 (     0)   3468 (     0)   1112 (     0)  37456 (     0) after Galuga::Controller::Root : _DISPATCH
-
+Format Size Byte Text
 =head1 METHODS
 
 =head2 C<memory_usage()>
@@ -102,6 +105,42 @@ sub reset_memory_usage {
     $self->memory_usage( Memory::Usage->new );
 }
 
+sub memory_usage_report {
+    my $self = shift;
+
+    my $title_width = max 10,
+        map { length $_->[1] } @{ $self->memory_usage->state };
+
+    my $table = Text::SimpleTable->new( 
+        [$title_width, ''],
+        [4, 'vsz'],
+        [4, 'delta'],
+        [4, 'rss'],
+        [4, 'delta'],
+        [4, 'shared'],
+        [4, 'delta'],
+        [4, 'code'],
+        [4, 'delta'],
+        [4, 'data'],
+        [4, 'delta'],
+    );
+
+    my @previous;
+
+    for my $s ( @{ $self->memory_usage->state } ) {
+        my ( $time, $msg, @sizes ) = @$s;
+
+        my @data = map { $_ ? format_bytes( 1024 * $_) : '' } map { 
+            ( $sizes[$_], @previous ? $sizes[$_] - $previous[$_]  : 0 )
+        } 0..4;
+        @previous = @sizes;
+
+        $table->row( $msg, @data );
+    }
+
+    return $table->draw;
+}
+
 unless ( $os_not_supported ) {
 
 after execute => sub {
@@ -127,7 +166,7 @@ around prepare => sub {
 before finalize => sub {
     my $c = shift;
 
-    $c->log->debug( 'memory usage of request', $c->memory_usage->report );
+    $c->log->debug( 'memory usage of request'. "\n". $c->memory_usage_report );
 };
 
 }

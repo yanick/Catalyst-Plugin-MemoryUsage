@@ -22,7 +22,7 @@ my ( $profile ) = grep { /memory usage/ } @{ $MyLog::mylog->{debug} };
 
 ok $profile, "profile is reported";
 
-like $profile, qr/in the middle of index/, '$c->memory_usage->record() output';
+like $profile, qr/in the mddle of index/, '$c->memory_usage->record() output';
 
 note $profile;
 
