@@ -29,6 +29,13 @@ use warnings;
 
 use Catalyst qw/ MemoryUsage /;
 
+__PACKAGE__->config(
+    'Plugin::MemoryUsage' => {
+        report => 1,
+        action_milestones => 1,
+    },
+);
+
 __PACKAGE__->setup;
 
 sub log {
