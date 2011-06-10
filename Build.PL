@@ -25,16 +25,19 @@ my %module_build_args = (
     'Yanick Champoux <yanick@babyl.dyndns.org>'
   ],
   'dist_name' => 'Catalyst-Plugin-MemoryUsage',
-  'dist_version' => '0.1.1',
+  'dist_version' => '0.2.0',
   'license' => 'perl',
   'module_name' => 'Catalyst::Plugin::MemoryUsage',
   'recommends' => {},
   'recursive_test_files' => 1,
   'requires' => {
     'Devel::CheckOS' => '0',
+    'List::Util' => '0',
     'MRO::Compat' => '0',
     'Memory::Usage' => '0',
     'Moose::Role' => '0',
+    'Number::Bytes::Human' => '0',
+    'Text::SimpleTable' => '0',
     'namespace::autoclean' => '0'
   },
   'script_files' => []

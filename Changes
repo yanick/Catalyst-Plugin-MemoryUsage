@@ -1,15 +1,19 @@
 Revision history for Catalyst::Plugin::MemoryUsage
 
-0.1.1     2010-12-09 23:34:59 America/Montreal
-    * Add support for NetBSD.
+0.2.0 2011-06-09
+ [ENHANCEMENTS]
+ - Report now use Text::SimpleTable
 
-0.1.0     2010-12-09 21:25:39 America/Montreal
-    * If the OS is not Linux, issue a warning and don't active the plugin.
+0.1.1 2010-12-09T23:34:59Z
+ - Add support for NetBSD.
 
-0.0.2     2010-11-29 20:41:21 America/Montreal
-    * Flesh out the documentation a little bit.
-    * Add a test.
+0.1.0 2010-12-09T21:25:39Z
+ - If the OS is not Linux, issue a warning and don't active the plugin.
 
-0.0.1     2010-11-28 23:05:10 America/Montreal
-    * First release on an unsuspecting world.
+0.0.2 2010-11-29T20:41:21Z
+ - Flesh out the documentation a little bit.
+ - Add a test.
+
+0.0.1 2010-11-28T23:05:10Z
+ - First release on an unsuspecting world.
 
