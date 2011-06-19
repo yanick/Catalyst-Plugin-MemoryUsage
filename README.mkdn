@@ -4,7 +4,7 @@ Catalyst::Plugin::MemoryUsage - Profile memory usage of requests
 
 # VERSION
 
-version 0.2.0
+version 0.3.0
 
 # SYNOPSIS
 
@@ -31,6 +31,13 @@ In a Controller class:
          # ...
     }
 
+In yourapp.conf:
+
+    <Plugin::MemoryUsage>
+        report            1
+        action_milestones 1
+    </Plugin::MemoryUsage>
+
 # DESCRIPTION
 
 `Catalyst::Plugin::MemoryUsage` adds a memory usage profile to your debugging
@@ -50,6 +57,24 @@ log, which looks like this:
  | after TestApp::Controller::Root : root/_END      | 28M  |      | 22M  |      | 2.2M |      | 1.1M |      | 20M  |      |
  | after TestApp::Controller::Root : root/_DISPATCH | 28M  |      | 22M  |      | 2.2M |      | 1.1M |      | 20M  |      |
  '--------------------------------------------------+------+------+------+------+------+------+------+------+------+------'  
+
+# CONFIGURATION
+
+## report
+
+If true, the memory usage is reported automatically (at debug level)
+at the end of the request.  
+
+Defaults to true if we are in debugging mode,
+false otherwise.
+
+## action_milestones
+
+If true, automatically adds milestones for each action, as seen in the
+DESCRIPTION.  
+
+Defaults to true if we are in debugging mode,
+false otherwise.
 
 # METHODS
 

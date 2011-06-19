@@ -1,5 +1,9 @@
 Revision history for Catalyst::Plugin::MemoryUsage
 
+0.3.0 2011-06-19 
+ [ENHANCEMENTS]
+ - Add config options (report, action_milestones)
+
 0.2.0 2011-06-09
  [ENHANCEMENTS]
  - Report now use Text::SimpleTable

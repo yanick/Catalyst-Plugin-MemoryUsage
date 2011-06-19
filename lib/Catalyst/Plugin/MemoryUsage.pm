@@ -3,7 +3,7 @@ BEGIN {
   $Catalyst::Plugin::MemoryUsage::AUTHORITY = 'cpan:yanick';
 }
 BEGIN {
-  $Catalyst::Plugin::MemoryUsage::VERSION = '0.2.0';
+  $Catalyst::Plugin::MemoryUsage::VERSION = '0.3.0';
 }
 #ABSTRACT: Profile memory usage of requests
 
@@ -35,6 +35,25 @@ has memory_usage => (
     is => 'rw',
     default => sub { Memory::Usage->new },
 );
+
+our $_memory_usage_report;
+our $_memory_usage_record_actions;
+
+
+after setup_finalize => sub {
+    my $c = shift;
+
+    my %config = %{ $c->config->{'Plugin::MemoryUsage'} || {} };
+
+    $_memory_usage_report = 
+        exists $config{report} ? $config{report} : $c->debug;
+
+    $_memory_usage_record_actions = 
+        exists $config{action_milestones} 
+            ? $config{action_milestones} : $c->debug;
+};
+
+
 
 
 sub reset_memory_usage {
@@ -82,10 +101,9 @@ sub memory_usage_report {
 unless ( $os_not_supported ) {
 
 after execute => sub {
+    return unless $_memory_usage_record_actions;
+
     my $c = shift;
-
-    return if $os_not_supported;
-
     $c->memory_usage->record( "after " . join " : ", @_ );
 };
 
@@ -95,15 +113,16 @@ around prepare => sub {
 
     my $c = $self->$orig(@_);
 
-    $c->reset_memory_usage;
-    $c->memory_usage->record('preparing for the request');
+    $c->memory_usage->record('preparing for the request') 
+        if $_memory_usage_record_actions;
 
     return $c;
 };
 
-before finalize => sub {
-    my $c = shift;
+after finalize => sub {
+    return unless $_memory_usage_report;
 
+    my $c = shift;
     $c->log->debug( 'memory usage of request'. "\n". $c->memory_usage_report );
 };
 
@@ -123,7 +142,7 @@ Catalyst::Plugin::MemoryUsage - Profile memory usage of requests
 
 =head1 VERSION
 
-version 0.2.0
+version 0.3.0
 
 =head1 SYNOPSIS
 
@@ -147,6 +166,13 @@ In a Controller class:
          # ...
     }
 
+In yourapp.conf:
+
+    <Plugin::MemoryUsage>
+        report            1
+        action_milestones 1
+    </Plugin::MemoryUsage>
+
 =head1 DESCRIPTION
 
 C<Catalyst::Plugin::MemoryUsage> adds a memory usage profile to your debugging
@@ -166,6 +192,24 @@ log, which looks like this:
  | after TestApp::Controller::Root : root/_END      | 28M  |      | 22M  |      | 2.2M |      | 1.1M |      | 20M  |      |
  | after TestApp::Controller::Root : root/_DISPATCH | 28M  |      | 22M  |      | 2.2M |      | 1.1M |      | 20M  |      |
  '--------------------------------------------------+------+------+------+------+------+------+------+------+------+------'  
+
+=head1 CONFIGURATION
+
+=head2 report
+
+If true, the memory usage is reported automatically (at debug level)
+at the end of the request.  
+
+Defaults to true if we are in debugging mode,
+false otherwise.
+
+=head2 action_milestones
+
+If true, automatically adds milestones for each action, as seen in the
+DESCRIPTION.  
+
+Defaults to true if we are in debugging mode,
+false otherwise.
 
 =head1 METHODS
 
