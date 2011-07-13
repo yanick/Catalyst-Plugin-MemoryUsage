@@ -4,6 +4,7 @@ Revision history for Catalyst::Plugin::MemoryUsage
  [API CHANGES]
 
  [BUG FIXES]
+ - Add 'info' function in test app (issue found by Glenn Sumido)
 
  [ENHANCEMENTS]
 
