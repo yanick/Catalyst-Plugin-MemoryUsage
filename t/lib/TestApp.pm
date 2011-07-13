@@ -11,6 +11,11 @@ sub can {
     0;
 }
 
+sub info {
+    shift;
+    push @{ $MyLog::mylog->{info} }, "@_";
+}
+
 sub error {
     shift;
     push @{ $MyLog::mylog->{error} }, "@_";

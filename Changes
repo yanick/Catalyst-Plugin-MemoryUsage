@@ -1,6 +1,10 @@
 Revision history for Catalyst::Plugin::MemoryUsage
 
-0.3.0 2011-06-19 
+0.3.1 2011-07-13
+ [BUG FIXES]
+ - Add 'info' function in test app (issue found by Glenn Sumido)
+
+0.3.0 2011-06-19
  [ENHANCEMENTS]
  - Add config options (report, action_milestones)
 

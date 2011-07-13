@@ -52,7 +52,7 @@
    "provides" : {
       "Catalyst::Plugin::MemoryUsage" : {
          "file" : "lib/Catalyst/Plugin/MemoryUsage.pm",
-         "version" : "v0.3.0"
+         "version" : "v0.3.1"
       }
    },
    "release_status" : "stable",
@@ -68,7 +68,7 @@
          "web" : "http://github.com/yanick/Catalyst-Plugin-MemoryUsage/tree"
       }
    },
-   "version" : "0.3.0",
+   "version" : "0.3.1",
    "x_authority" : "cpan:yanick"
 }
 

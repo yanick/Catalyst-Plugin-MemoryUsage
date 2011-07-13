@@ -3,7 +3,7 @@ BEGIN {
   $Catalyst::Plugin::MemoryUsage::AUTHORITY = 'cpan:yanick';
 }
 BEGIN {
-  $Catalyst::Plugin::MemoryUsage::VERSION = '0.3.0';
+  $Catalyst::Plugin::MemoryUsage::VERSION = '0.3.1';
 }
 #ABSTRACT: Profile memory usage of requests
 
@@ -142,7 +142,7 @@ Catalyst::Plugin::MemoryUsage - Profile memory usage of requests
 
 =head1 VERSION
 
-version 0.3.0
+version 0.3.1
 
 =head1 SYNOPSIS
 
