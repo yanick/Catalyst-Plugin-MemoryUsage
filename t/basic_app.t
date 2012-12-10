@@ -18,7 +18,7 @@ my $x = $MyLog::mylog;  # to keep the warnings happy
 
 $mech->get_ok('/index');
 
-my ( $profile ) = grep { /memory usage/ } @{ $MyLog::mylog->{debug} };
+my ( $profile ) = grep { /\Q[MemoryUsage]/ } @{ $MyLog::mylog->{debug} };
 
 ok $profile, "profile is reported";
 

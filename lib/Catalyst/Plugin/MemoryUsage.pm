@@ -58,7 +58,7 @@ In yourapp.conf:
 C<Catalyst::Plugin::MemoryUsage> adds a memory usage profile to your debugging
 log, which looks like this:   
 
- [debug] memory usage of request
+ [debug] [MemoryUsage] memory usage of request "http://localhost/index" from "127.0.0.1"
  .--------------------------------------------------+------+------+------+------+------+------+------+------+------+------.
  |                                                  | vsz  | del- | rss  | del- | sha- | del- | code | del- | data | del- |
  |                                                  |      | ta   |      | ta   | red  | ta   |      | ta   |      | ta   |
@@ -213,7 +213,14 @@ after finalize => sub {
     return unless $_memory_usage_report;
 
     my $c = shift;
-    $c->log->debug( 'memory usage of request'. "\n". $c->memory_usage_report );
+    $c->log->debug(
+        sprintf(qq{[%s] memory usage of request "%s" from "%s"\n},
+            [split m{::}, __PACKAGE__]->[-1],
+            $c->req->uri,
+            $c->req->address,
+        ),
+        $c->memory_usage_report
+    );
 };
 
 }
