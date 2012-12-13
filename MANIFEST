@@ -1,3 +1,4 @@
+AUTHOR_PLEDGE
 Build.PL
 Changes
 INSTALL
@@ -9,8 +10,10 @@ README
 README.mkdn
 SIGNATURE
 lib/Catalyst/Plugin/MemoryUsage.pm
-t/000-report-versions.t
+t/00-compile.t
+t/000-report-versions-tiny.t
 t/basic_app.t
 t/lib/TestApp.pm
 t/lib/TestApp/Controller/Root.pm
 t/not-supported.t
+xt/release/unused-vars.t
