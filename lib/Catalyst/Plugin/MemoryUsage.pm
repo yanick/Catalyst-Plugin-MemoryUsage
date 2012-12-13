@@ -175,7 +175,7 @@ sub memory_usage_report {
     my @previous;
 
     for my $s ( @{ $self->memory_usage->state } ) {
-        my ( $time, $msg, @sizes ) = @$s;
+        my ( undef, $msg, @sizes ) = @$s;
 
         my @data = map { $_ ? format_bytes( 1024 * $_) : '' } map { 
             ( $sizes[$_], @previous ? $sizes[$_] - $previous[$_]  : 0 )
