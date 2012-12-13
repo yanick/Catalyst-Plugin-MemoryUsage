@@ -1,6 +1,8 @@
 Revision history for Catalyst::Plugin::MemoryUsage
 
-{{$NEXT}} 
+{{$NEXT}}
+
+0.4.0     2012-12-12 
  [ENHANCEMENTS]
  - More data to differentiate requests in the log (Mike Doherty)
 
