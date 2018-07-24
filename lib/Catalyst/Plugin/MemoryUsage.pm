@@ -1,6 +1,8 @@
 package Catalyst::Plugin::MemoryUsage;
 #ABSTRACT: Profile memory usage of requests
 
+use 5.10.0;
+
 use strict;
 use warnings;
 
@@ -129,12 +131,9 @@ after setup_finalize => sub {
 
     my %config = %{ $c->config->{'Plugin::MemoryUsage'} || {} };
 
-    $_memory_usage_report = 
-        exists $config{report} ? $config{report} : $c->debug;
+    $_memory_usage_report = $config{report} // $c->debug;
 
-    $_memory_usage_record_actions = 
-        exists $config{action_milestones} 
-            ? $config{action_milestones} : $c->debug;
+    $_memory_usage_record_actions = $config{action_milestones} // $c->debug;
 };
 
 
