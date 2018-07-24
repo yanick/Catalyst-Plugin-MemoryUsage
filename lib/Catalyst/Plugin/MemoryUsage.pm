@@ -118,8 +118,10 @@ method of that object:
 =cut
 
 has memory_usage => (
-    is => 'rw',
+    is      => 'ro',
+    lazy    => 1,
     default => sub { Memory::Usage->new },
+    clearer => 'reset_memory_usage',
 );
 
 our $_memory_usage_report;
@@ -144,12 +146,6 @@ Discards the current C<Memory::Usage> object, along with its recorded data,
 and replaces it by a shiny new one.
 
 =cut
-
-sub reset_memory_usage {
-    my $self = shift;
-
-    $self->memory_usage( Memory::Usage->new );
-}
 
 sub memory_usage_report {
     my $self = shift;
