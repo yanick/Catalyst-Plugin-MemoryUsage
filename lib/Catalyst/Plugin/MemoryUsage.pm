@@ -155,16 +155,9 @@ sub memory_usage_report {
 
     my $table = Text::SimpleTable->new( 
         [$title_width, ''],
-        [4, 'vsz'],
-        [4, 'delta'],
-        [4, 'rss'],
-        [4, 'delta'],
-        [4, 'shared'],
-        [4, 'delta'],
-        [4, 'code'],
-        [4, 'delta'],
-        [4, 'data'],
-        [4, 'delta'],
+        map { [ 4, $_ ] } 
+        map { ( $_, 'delta' ) }
+            qw/ vsz rss  shared code data /
     );
 
     my @previous;
