@@ -21,10 +21,9 @@ our @SUPPORTED_OSES = qw/ Linux NetBSD /;
 
 our $os_not_supported = Devel::CheckOS::os_isnt( @SUPPORTED_OSES );
 
-if ( $os_not_supported ) {
-    warn "OS not supported by Catalyst::Plugin::MemoryUsage\n",
-         "\tStats will not be collected\n";
-}
+warn "OS not supported by Catalyst::Plugin::MemoryUsage\n",
+    "\tStats will not be collected\n" 
+        if $os_not_supported;
 
 =head1 SYNOPSIS
 
@@ -32,9 +31,7 @@ In YourApp.pm:
 
     package YourApp;
 
-    use Catalyst qw/
-        MemoryUsage
-    /;
+    use Catalyst qw/ MemoryUsage /;
 
 In a Controller class:
 
@@ -127,7 +124,6 @@ has memory_usage => (
 our $_memory_usage_report;
 our $_memory_usage_record_actions;
 
-
 after setup_finalize => sub {
     my $c = shift;
 
@@ -178,38 +174,38 @@ sub memory_usage_report {
 
 unless ( $os_not_supported ) {
 
-after execute => sub {
-    return unless $_memory_usage_record_actions;
+    after execute => sub {
+        return unless $_memory_usage_record_actions;
 
-    my $c = shift;
-    $c->memory_usage->record( "after " . join " : ", @_ );
-};
+        my $c = shift;
+        $c->memory_usage->record( "after " . join " : ", @_ );
+    };
 
-around prepare => sub {
-    my $orig = shift;
-    my $self = shift;
+    around prepare => sub {
+        my $orig = shift;
+        my $self = shift;
 
-    my $c = $self->$orig(@_);
+        my $c = $self->$orig(@_);
 
-    $c->memory_usage->record('preparing for the request') 
-        if $_memory_usage_record_actions;
+        $c->memory_usage->record('preparing for the request') 
+            if $_memory_usage_record_actions;
 
-    return $c;
-};
+        return $c;
+    };
 
-after finalize => sub {
-    return unless $_memory_usage_report;
+    after finalize => sub {
+        return unless $_memory_usage_report;
 
-    my $c = shift;
-    $c->log->debug(
-        sprintf(qq{[%s] memory usage of request "%s" from "%s"\n},
-            [split m{::}, __PACKAGE__]->[-1],
-            $c->req->uri,
-            $c->req->address,
-        ),
-        $c->memory_usage_report
-    );
-};
+        my $c = shift;
+        $c->log->debug(
+            sprintf(qq{[%s] memory usage of request "%s" from "%s"\n},
+                [split m{::}, __PACKAGE__]->[-1],
+                $c->req->uri,
+                $c->req->address,
+            ),
+            $c->memory_usage_report
+        );
+    };
 
 }
 
