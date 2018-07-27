@@ -1,6 +1,7 @@
 Revision history for Catalyst::Plugin::MemoryUsage
 
 {{$NEXT}}
+ - Misc. small refactoring.
 
 0.4.0     2012-12-12 
  [ENHANCEMENTS]
