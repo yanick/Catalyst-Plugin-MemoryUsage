@@ -1,0 +1,92 @@
+{
+   "abstract" : "Profile memory usage of requests",
+   "author" : [
+      "Yanick Champoux <yanick@cpan.org>"
+   ],
+   "dynamic_config" : 0,
+   "generated_by" : "Dist::Zilla version 6.011, CPAN::Meta::Converter version 2.150010",
+   "license" : [
+      "perl_5"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "Catalyst-Plugin-MemoryUsage",
+   "prereqs" : {
+      "configure" : {
+         "requires" : {
+            "ExtUtils::MakeMaker" : "0"
+         }
+      },
+      "develop" : {
+         "requires" : {
+            "Test::More" : "0.96",
+            "Test::Vars" : "0"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "Devel::CheckOS" : "0",
+            "List::Util" : "0",
+            "MRO::Compat" : "0",
+            "Memory::Usage" : "0",
+            "Moose::Role" : "0",
+            "Number::Bytes::Human" : "0",
+            "Text::SimpleTable" : "0",
+            "namespace::autoclean" : "0",
+            "perl" : "v5.10.0",
+            "strict" : "0",
+            "warnings" : "0"
+         }
+      },
+      "test" : {
+         "recommends" : {
+            "CPAN::Meta" : "2.120900"
+         },
+         "requires" : {
+            "Catalyst" : "0",
+            "Catalyst::Controller" : "0",
+            "ExtUtils::MakeMaker" : "0",
+            "File::Spec" : "0",
+            "IO::Handle" : "0",
+            "IPC::Open3" : "0",
+            "Test::More" : "0",
+            "Test::WWW::Mechanize::Catalyst" : "0",
+            "lib" : "0",
+            "parent" : "0"
+         }
+      }
+   },
+   "provides" : {
+      "Catalyst::Plugin::MemoryUsage" : {
+         "file" : "lib/Catalyst/Plugin/MemoryUsage.pm",
+         "version" : "v0.4.1"
+      }
+   },
+   "release_status" : "stable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/yanick/Catalyst-Plugin-MemoryUsage/issues"
+      },
+      "homepage" : "https://github.com/yanick/Catalyst-Plugin-MemoryUsage",
+      "repository" : {
+         "type" : "git",
+         "url" : "https://github.com/yanick/Catalyst-Plugin-MemoryUsage.git",
+         "web" : "https://github.com/yanick/Catalyst-Plugin-MemoryUsage"
+      }
+   },
+   "version" : "0.4.1",
+   "x_author_pledge" : {
+      "version" : 1
+   },
+   "x_authority" : "cpan:YANICK",
+   "x_contributor_covenant" : {
+      "version" : 0.01
+   },
+   "x_contributors" : [
+      "Mike Doherty <doherty@pythian.com>"
+   ],
+   "x_serialization_backend" : "JSON::XS version 3.01"
+}
+
